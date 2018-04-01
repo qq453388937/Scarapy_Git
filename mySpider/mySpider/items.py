@@ -8,9 +8,10 @@
 import scrapy
 
 
-class MyspiderItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    name = scrapy.Field() # 实际就是个字符串
-    age = scrapy.Field() # 实际就是个字符串
-    pass
+class TeacherItem(scrapy.Item):
+    # 姓名
+    name = scrapy.Field() # 实际上就是字符串
+    # 职称
+    title = scrapy.Field() # 实际上就是字符串
+    # 个人简介
+    info = scrapy.Field() # 实际上就是字符串
