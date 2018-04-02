@@ -20,7 +20,7 @@ class teacherSpider(scrapy.Spider):
         # 所有老师的集合
         tmp_arr = []
         for item in response.xpath("//div[@class='li_txt']"):
-            teacher = TeacherItem() # 假字典
+            teacher = TeacherItem()
             # 遍历   不加extract就是xpath匹配度西
             name = item.xpath("./h3/text()").extract()  # 只要是XPATH匹配的都是列表['']  先用extract() 将匹配出来的转换为unicode字符串
             title = item.xpath("./h4/text()").extract()  # 只要是XPATH匹配的都是列表[''] 先用extract()将匹配出来的转换为unicode字符串

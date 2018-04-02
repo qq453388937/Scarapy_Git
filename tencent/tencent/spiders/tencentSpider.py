@@ -20,7 +20,7 @@ class TencentSpider(scrapy.Spider):
     start_urls = [url + str(page)]
 
     def parse(self, response):
-        print(response.body)
+        # print(response.body)
         for item in response.xpath("//tr[@class='even']|//tr[@class='odd']"):
             # response.xpath("//tr[@class='even']|//tr[@class='odd']")[0].xpath("td[1]/a/text()").extract()[0] 测试
             tencent_model = TencentItem()  # 当做假字典来用
@@ -29,7 +29,8 @@ class TencentSpider(scrapy.Spider):
             # 详情链接
             tencent_model["positionlink"] = item.xpath("./td[1]/a/@href").extract()[0]
             # 职位类别
-            tencent_model["positionType"] = item.xpath("./td[2]/text()").extract()[0]
+            tencent_model["positionType"] = item.xpath("./td[2]/text()").extract()[0] if item.xpath(
+                "./td[2]/text()") else ""
             # 招牌人数
             tencent_model["peopleNum"] = item.xpath("./td[3]/text()").extract()[0]
             # 工作地点
@@ -43,5 +44,5 @@ class TencentSpider(scrapy.Spider):
         if self.page < 1680:
             # 自增10每次处理完一页请求后处理下一页请求
             self.page += 10
-        # 下一页请求 回调自己
+        # 下一页请求 回调自己self.parse 处理response
         yield scrapy.Request(self.url + str(self.page), callback=self.parse)

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for tencent project
+# Scrapy settings for douyuSpider project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,13 +9,13 @@
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'tencent'
+BOT_NAME = 'douyuSpider'
 
-SPIDER_MODULES = ['tencent.spiders']
-NEWSPIDER_MODULE = 'tencent.spiders'
+SPIDER_MODULES = ['douyuSpider.spiders']
+NEWSPIDER_MODULE = 'douyuSpider.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-# USER_AGENT = 'tencent (+http://www.yourdomain.com)'
+# USER_AGENT = 'douyuSpider (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 # ROBOTSTXT_OBEY = True
@@ -26,7 +26,7 @@ NEWSPIDER_MODULE = 'tencent.spiders'
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 0
+# DOWNLOAD_DELAY = 3
 # The download delay setting will honor only one of:
 # CONCURRENT_REQUESTS_PER_DOMAIN = 16
 # CONCURRENT_REQUESTS_PER_IP = 16
@@ -47,13 +47,13 @@ DEFAULT_REQUEST_HEADERS = {
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 # SPIDER_MIDDLEWARES = {
-#    'tencent.middlewares.TencentSpiderMiddleware': 543,
+#    'douyuSpider.middlewares.DouyuspiderSpiderMiddleware': 543,
 # }
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 # DOWNLOADER_MIDDLEWARES = {
-#    'tencent.middlewares.TencentDownloaderMiddleware': 543,
+#    'douyuSpider.middlewares.DouyuspiderDownloaderMiddleware': 543,
 # }
 
 # Enable or disable extensions
@@ -65,9 +65,12 @@ DEFAULT_REQUEST_HEADERS = {
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'tencent.pipelines.TencentPipeline': 300,
+    'douyuSpider.pipelines.DouyuImagePipeline': 300,
+    'douyuSpider.pipelines.DouyuStoragePipeline': 300,
 }
 
+# 这个是图片位置不能改
+IMAGES_STORE = '/home/python/Scarapy_Git/douyuSpider/images/'
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
 # AUTOTHROTTLE_ENABLED = True
