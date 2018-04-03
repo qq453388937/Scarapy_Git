@@ -10,7 +10,8 @@ from scrapy import cmdline
 # cmdline.execute("scrapy crawl fb -o ../fb.json".split())  # 默认是当前路径  ../ 是上一级目录
 
 
-cmdline.execute("scrapy crawl tc".split())
+# cmdline.execute("scrapy crawl dongguan".split())
+cmdline.execute("scrapy crawl xixi".split())
 
 
 # def fib(num):
