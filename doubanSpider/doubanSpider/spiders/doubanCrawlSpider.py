@@ -23,11 +23,12 @@ class DoubanCrawlSpider(CrawlSpider):
     """
 
     def parse_Douban(self, response):
+        # return
         for i in range(0, 25):
             item = DoubanspiderItem()
             item["title"] = response.xpath("//div[@class='item']//a/span[1]/text()").extract()[i]
             item["bd"] = response.xpath("//div[@class='info']/div[@class='bd']/p[1]/text()").extract()[i]
-            item["star"] = response.xpath("//span[@class='rating_num']").extract()[i]
+            item["star"] = response.xpath("//span[@class='rating_num']/text()").extract()[i]
             item["quote"] = response.xpath("//p[@class='quote']").extract()[i]
             yield item
         # self.page += 10

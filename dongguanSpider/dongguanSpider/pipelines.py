@@ -6,6 +6,8 @@
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import json
 import codecs
+# scrapy中导入settings文件
+from scrapy.conf import settings
 
 
 class DongguanspiderPipeline(object):
