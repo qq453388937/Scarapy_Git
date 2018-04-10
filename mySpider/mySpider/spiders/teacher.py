@@ -7,7 +7,7 @@ class teacherSpider(scrapy.Spider):
     # 爬虫的name,名称很关键,启动命令会用到!!
     name = "fb"
     # 允许爬虫作用的范围
-    allowed_domains = ["http://www.itcast.cn/"]
+    allowed_domains = ["itcast.cn"]
     # 元祖列表都可以
     start_urls = [
         "http://www.itcast.cn/channel/teacher.shtml#apython",
@@ -25,7 +25,7 @@ class teacherSpider(scrapy.Spider):
             name = item.xpath("./h3/text()").extract()  # 只要是XPATH匹配的都是列表['']  先用extract() 将匹配出来的转换为unicode字符串
             title = item.xpath("./h4/text()").extract()  # 只要是XPATH匹配的都是列表[''] 先用extract()将匹配出来的转换为unicode字符串
             info = item.xpath("./p/text()").extract()  # 只要是XPATH匹配的都是列表[''] 先用extract()将匹配出来的转换为unicode字符串
-            # print(name[0])
+            # print(name[0])123123123
             # print(zhi_cheng[0])
             # print(info[0a00000])
             teacher["name"] = name[0]

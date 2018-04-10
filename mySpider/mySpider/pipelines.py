@@ -17,7 +17,7 @@ class PeiXiaoDongPipeline(object):
         """管道文件处理数据,处理item数据的"""
         json_str = json.dumps(dict(item), ensure_ascii=False)
         self.file.write(json_str.encode("utf-8") + ",\n")
-        return item # 不管写什么最后要return
+        return item  # 不管写什么最后要return
 
     def close_spider(self, spider):
         """可选方法,类似析构方法"""
