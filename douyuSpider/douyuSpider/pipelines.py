@@ -22,17 +22,21 @@ class DouyuImagePipeline(ImagesPipeline):
     def get_media_requests(self, item, info):
         """获取图片的链接并且发送请求"""
         image_url = item["vertical_src"]
-        yield scrapy.Request(image_url) # 这里不需要回调
+        yield scrapy.Request(image_url)  # 这里不需要回调
 
     def item_completed(self, result, item, info):
         """
         图片请求完毕后处理的请求
+        result 是什么？？？？？
+
         <class 'tuple'>: (True, {'url': 'https://rpic.douyucdn.cn/live-cover/appCovers/2018/03/01/3559600_20180301211036_big.jpg', 'checksum': 'cdb42ca421a9c2c89dcead50fa273d8c', 'path': 'full/b105870254d4e82f65ede7add3d05f022958ddb4.jpg'})
         """
+        print("+++"*20)
+        print(result)
         self.number += 1
         image_path = [x["path"] for ok, x in result if ok]
 
-        os.rename(self.IMAGES_STORE + image_path[0],
+        os.rename(self.IMAGES_STORE + image_path[0],#image_path[0] ==> full/b105870254d4e82f65ede7add3d05f022958ddb4.jpg
                   self.IMAGES_STORE + str(self.number) + "_" + item["nickname"] + ".jpg")
         # 存储到对象的属性中
         item["vertical_src"] = self.IMAGES_STORE + "/" + item["nickname"]
@@ -43,6 +47,7 @@ class DouyuImagePipeline(ImagesPipeline):
         os.rmdir(self.IMAGES_STORE + "/full")
 
 
+# 存储文件并且存储一份数据到ｊｓｏｎ
 class DouyuStoragePipeline(object):
     def __init__(self):
         """可选的方法,初始化方法"""

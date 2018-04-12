@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 import scrapy
 from scrapy.linkextractors import LinkExtractor
-from scrapy.spiders import CrawlSpider, Rule,Spider
+from scrapy.spiders import CrawlSpider, Rule, Spider
 
 
 class RenRenLogin(Spider):
@@ -37,10 +37,12 @@ class RenRenLogin(Spider):
         "xnsid": "f42b25cf",
         "loginfrom": "syshome"
     }
+
     # 如果希望程序执行一开始就发送POST请求，可以重写Spider类的start_requests(self) 方法，并且不再调用start_urls里的url。
     def start_requests(self):
         for url in self.start_urls:
-            yield scrapy.FormRequest(url, cookies = self.cookies, callback = self.parse_page)
+            """这是带上ｃｏｏｋｉｅ的ｐｏｓｔ请求方式"""
+            yield scrapy.FormRequest(url, cookies=self.cookies, callback=self.parse_page)
             # 先get请求一次获取到隐藏的信息后再带上发送post请求模拟登陆  scrapy.FormRequest.from_response
             # yield scrapy.FormRequest.from_response(url,
             #                          formdata={"email" : "mr_mao_hacker@163.com", "password" : "alarmchime"},#, "_xsrf" = _xsrf},

@@ -19,6 +19,7 @@ print response.xpath("//div[@class='pagecenter p3']//strong/text()").extract()[0
 
 """
 
+
 class TenctCrawlspidersSpider_Shouxie(CrawlSpider):
     """
     from scrapy.linkextractors import LinkExtractor
@@ -27,9 +28,9 @@ class TenctCrawlspidersSpider_Shouxie(CrawlSpider):
     """
     name = "tc"
     allowed_domains = ['hr.tencent.com']  # 可以不写
-    start_urls = ['https://hr.tencent.com/position.php?&start=0#a']
+    start_urls = ['https://hr.tencent.com/position.php?&start=0#a'] # 第一次请求start_urls
     # response里的链接提取链接url,搭配rules使用, 返回符合匹配规则链接的列表
-    page_link = LinkExtractor(allow=("start=\d+",)) # 第一次请求start_urls
+    page_link = LinkExtractor(allow=("start=\d+",))
     # new_link = LinkExtractor(allow=("positon.php",))
 
     rules = [
@@ -61,5 +62,5 @@ class TenctCrawlspidersSpider_Shouxie(CrawlSpider):
                 # publishTime
                 tencent_model["publishtime"] = item.xpath("./td[5]/text()").extract()[0] if item.xpath(
                     "./td[5]/text()") else ""
-                yield tencent_model # 一定要return假字典
+                yield tencent_model  # 一定要return假字典
         # 下一页请求不需要自己去发了,由scrapy帮我们发送,深度请求

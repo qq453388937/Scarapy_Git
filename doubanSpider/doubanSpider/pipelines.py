@@ -23,6 +23,9 @@ class DoubanspiderPipeline(object):
         mydb = client[MONGODB_DBNAME]
         self.post = mydb[MONGODB_TABLE]
 
+    def open_spider(self,item):
+        pass # 类比与__init__方法
+
     def process_item(self, item, spider):
         json_str = json.dumps(dict(item), ensure_ascii=False)
         # 存储数据库

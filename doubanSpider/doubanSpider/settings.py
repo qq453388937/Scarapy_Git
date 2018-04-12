@@ -61,7 +61,7 @@ MONGODB_TABLE = "Doubanmovies"
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
-# 下载中间件
+# 下载中间配置！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
 DOWNLOADER_MIDDLEWARES = {
     'doubanSpider.mymiddlewares.RandomUserAgent': 100,
     'doubanSpider.mymiddlewares.RandomProxy': 200,
@@ -77,10 +77,10 @@ USER_AGENTS = [
 ]
 
 PROXIES = [
-        {"ip_port" :"121.42.140.113:16816", "user_passwd" : "mr_mao_hacker:sffqry9r"},
-        #{"ip_port" :"121.42.140.113:16816", "user_passwd" : ""}
-        #{"ip_port" :"121.42.140.113:16816", "user_passwd" : ""}
-        #{"ip_port" :"121.42.140.113:16816", "user_passwd" : ""}
+    {"ip_port": "121.42.140.113:16816", "user_passwd": "mr_mao_hacker:sffqry9r"},
+    # {"ip_port" :"121.42.140.113:16816", "user_passwd" : ""}
+    # {"ip_port" :"121.42.140.113:16816", "user_passwd" : ""}
+    # {"ip_port" :"121.42.140.113:16816", "user_passwd" : ""}
 ]
 
 # Enable or disable extensions

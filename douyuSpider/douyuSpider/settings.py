@@ -26,7 +26,7 @@ NEWSPIDER_MODULE = 'douyuSpider.spiders'
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-# DOWNLOAD_DELAY = 3
+DOWNLOAD_DELAY = 1
 # The download delay setting will honor only one of:
 # CONCURRENT_REQUESTS_PER_DOMAIN = 16
 # CONCURRENT_REQUESTS_PER_IP = 16
@@ -69,8 +69,8 @@ ITEM_PIPELINES = {
     'douyuSpider.pipelines.DouyuStoragePipeline': 300,
 }
 
-# 这个是图片位置不能改
-IMAGES_STORE = '/home/python/Scarapy_Git/douyuSpider/images/'
+# 这个是图片位置不能改,参数名是规定好的不能自定义
+IMAGES_STORE = '/home/cat/Desktop/Scarapy_Git/douyuSpider/images/'
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
 # AUTOTHROTTLE_ENABLED = True

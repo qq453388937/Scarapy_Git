@@ -7,8 +7,7 @@ from dongguanSpider.items import DongguanspiderItem
 
 class DongguanSpider(CrawlSpider):
     """
-     # 放到请求队列里,出队,交给下载器去下载,响应提取链接通过LinkExtractor
-
+     # 放到请求队列里,出队,交给下载器去下载,响应提1取链接通过LinkExtractor+
     """
     """
         from scrapy.linkextractors import LinkExtractor
@@ -21,7 +20,7 @@ class DongguanSpider(CrawlSpider):
 
     # page_link = LinkExtractor(allow=r"questionType?type=4&page=0")
     rules = [
-        # 没有callback 意味着 follow = True
+        # 没有callback 意味着 follow = True,如果有callback需要手动制定ｆｏｌｌｏｗ这里制定了个测试打印方法
         Rule(LinkExtractor(allow=r'type=4&page=\d+'), follow=True, callback="print_dafa", process_links="deal_links"),
         # 这个页面不需要抓取数据就不用写ｃａｌｌｂａｃｋ
         # 进去详情页就不需要深度爬取了所以follow=False
@@ -35,17 +34,17 @@ class DongguanSpider(CrawlSpider):
         """如果出问题如何调试呢?
         注释第二个Rule 只打印第一个Rule的Response.url 并且开启日志
         """
+        print(response.url)
+
         model = DongguanspiderItem()
         model["title"] = response.xpath("//div[contains(@class,'pagecenter p3')]//strong/text()").extract()[0]
         model["number"] = model["title"].split(" ")[-1].split(":")[-1].strip()
 
         content = response.xpath("//div[@class='contentext']/text()").extract()
         if content:
-            model["content"] = "".join(response.xpath("//div[@class='c1 text14_2']").extract()[0]).strip().replace(
-                "\xa0", "")
+            model["content"] = "".join(response.xpath("//div[@class='c1 text14_2']").extract()[0]).strip().replace("\xa0", "")
         else:
-            model["content"] = "".join(response.xpath("//div[@class='contentext']/text()").extract()).replace("\xa0",
-                                                                                                              "")
+            model["content"] = "".join(response.xpath("//div[@class='contentext']/text()").extract()).replace("\xa0","")
         model["url"] = response.url  # 浏览器地址栏中的url,也就是响应体中请求的url
         yield model
 

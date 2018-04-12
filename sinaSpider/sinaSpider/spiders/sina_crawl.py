@@ -53,6 +53,7 @@ class SinaCrawlSpider(Spider):
                     items.append(item)
                     # 发送每个小类url的Request请求，得到Response连同包含meta数据 一同交给回调函数 second_parse 方法处理
                 for item in items:
+                    # meta传参数
                     yield scrapy.Request(url=item['subUrls'], meta={'meta_1': item}, callback=self.second_parse)
 
     # 对于返回的小类的url，再进行递归请求

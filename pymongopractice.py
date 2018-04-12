@@ -52,7 +52,7 @@ for item in user_collection.find({"name": "ddd"}):  # cursor_user
 # user_collection.insert_many([{"name": "many_One"}, {"name": "many_One"}
 
 # 更新数据
-user_collection.update({"name": "pxd"}, {"name": "666"})  # 一次改一个默认,相当于覆盖 $set
+# user_collection.update({"name": "pxd"}, {"name": "666"},upsert=True)  # 一次改一个默认,相当于覆盖 $set
 
 # user_collection.delete_one(query)
 # user_collection.delete_many(query)

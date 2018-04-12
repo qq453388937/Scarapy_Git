@@ -24,7 +24,8 @@ class DoubanCrawlSpider(CrawlSpider):
 
     def parse_Douban(self, response):
         # return
-        for i in range(0, 25):
+        print(response.url)
+        for i in range(0, 25): # 可以获取父类的ｘｐａｔｈ（２５个）遍历当前ｘｐａｔｈ节点也可以直接取子节点
             item = DoubanspiderItem()
             item["title"] = response.xpath("//div[@class='item']//a/span[1]/text()").extract()[i]
             item["bd"] = response.xpath("//div[@class='info']/div[@class='bd']/p[1]/text()").extract()[i]
