@@ -5,8 +5,8 @@ from scrapy.spiders import CrawlSpider, Rule
 class DmozSpider(CrawlSpider):
     """可以运用scrapy_redis的指纹和调度器数据库,没有用分布式"""
     name = 'dmoz'
-    allowed_domains = ['dmoz.org']
-    start_urls = ['http://www.dmoz.org/'] # start_urls不受allowed_domains约束
+    allowed_domains = ['dmoztools.net']
+    start_urls = ['http://dmoztools.net/'] # start_urls不受allowed_domains约束
 
     rules = [
         Rule(LinkExtractor(
